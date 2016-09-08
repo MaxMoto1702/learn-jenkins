@@ -5,40 +5,27 @@ node('node') {
     currentBuild.result = "SUCCESS"
 
     try {
-
-        stage 'Checkout'
-
-        checkout scm
+        stage 'Clean'
+        print "Start cleaning..."
+        sh './gradlew clean'
+        print "Finish cleaning."
 
         stage 'Test'
+        print "Start testing..."
+        sh './gradlew test'
+        print "Finish testing."
 
-        env.NODE_ENV = "test"
-
-        print "Environment will be : ${env.NODE_ENV}"
-
-
-        stage 'Build Docker'
-
-        echo 'Build Docker'
-
-        stage 'Deploy'
-
-        echo 'Push to Repo'
-
-        echo 'ssh to web server and tell it to pull new image'
-
-        stage 'Cleanup'
-
-        echo 'prune and cleanup'
+        stage 'Build'
+        print "Start building..."
+        sh './gradlew build'
+        print "Finish building."
 
         mail body: 'project build successful',
                 from: 'smv@live.ru',
                 replyTo: 'smv@live.ru',
                 subject: 'project build successful',
                 to: 'maxim.serebryanskiy@icloud.com'
-
     }
-
 
     catch (err) {
 
@@ -52,5 +39,4 @@ node('node') {
 
         throw err
     }
-
 }
