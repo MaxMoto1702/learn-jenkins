@@ -3,3 +3,5 @@ repositories {
 }
 
 apply plugin: 'war'
+
+error!!!
