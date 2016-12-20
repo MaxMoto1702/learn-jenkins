@@ -1,7 +1,7 @@
 #!groovy
 
 node {
-    stage('chckout') {
+    stage {
         checkout([
                 $class                           : 'GitSCM',
                 branches                         : [
@@ -15,18 +15,13 @@ node {
                 ]
         ])
     }
-    stage('ls') {
-        sh 'ls -Al'
+    stage('Build') {
+        sh './gradlew build'
     }
-    stage('compile') {
-        sh './gradlew compileJava'
-    }
-    stage('test') {
+    stage('Test') {
         sh './gradlew test'
     }
-    stage('build') {
-        sh './gradlew test'
+    stage('Deploy') {
+        sh './gradlew war'
     }
-
-    // simple commit
 }
