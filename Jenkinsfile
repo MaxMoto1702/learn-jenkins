@@ -1,13 +1,16 @@
 #!groovy
 
 node {
-    stage('compile') {
-        sh './gradlew compileJava'
+    stage('ls') {
+        sh 'ls -Al'
     }
-    stage('test') {
-        sh './gradlew test'
-    }
-    stage('build') {
-        sh './gradlew test'
-    }
+//    stage('compile') {
+//        sh './gradlew compileJava'
+//    }
+//    stage('test') {
+//        sh './gradlew test'
+//    }
+//    stage('build') {
+//        sh './gradlew test'
+//    }
 }
