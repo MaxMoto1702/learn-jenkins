@@ -27,4 +27,6 @@ node {
     stage('build') {
         sh './gradlew test'
     }
+
+    // simple commit
 }
