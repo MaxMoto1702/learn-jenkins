@@ -1,7 +1,7 @@
 #!groovy
 
 node {
-    stage {
+    stage('checkout') {
         checkout([
                 $class                           : 'GitSCM',
                 branches                         : [
